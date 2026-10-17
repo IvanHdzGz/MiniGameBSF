@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://phumayfws8v7"]
+
+[ext_resource type="Script" uid="uid://bvyxysov0r1qe" path="res://ui/hud.gd" id="1_37p78"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf5fn"]
+bg_color = Color(0.74509805, 0.078431375, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3gngh"]
+bg_color = Color(0, 0.5882353, 0.19607843, 1)
+
+[node name="HUD" type="CanvasLayer" unique_id=1259606641]
+script = ExtResource("1_37p78")
+
+[node name="MarginContainer" type="Control" parent="." unique_id=1154257432]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BarraSalud" type="ProgressBar" parent="MarginContainer" unique_id=1607282155]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 505.0
+offset_bottom = 32.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_yf5fn")
+value = 100.0
+
+[node name="BarraEstamina" type="ProgressBar" parent="MarginContainer" unique_id=1420989049]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 35.0
+offset_right = 305.0
+offset_bottom = 62.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_3gngh")
+value = 100.0

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bq31gjclbx4bs"]
+
+[ext_resource type="PackedScene" uid="uid://c8aoot3egy58g" path="res://escenarios/base/sala_combate.tscn" id="1_wk12a"]
+[ext_resource type="Script" uid="uid://26rwutx6sn1d" path="res://entidades/Spawner.gd" id="2_7pfvi"]
+
+[node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_wk12a")]
+
+[node name="SpawnEnemigo2" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="1" unique_id=1149395985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.78594, 0, 6.4400196)
+script = ExtResource("2_7pfvi")
+
+[node name="SpawnEnemigo3" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="2" unique_id=1985373962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.815525, 0, -6.24469)
+script = ExtResource("2_7pfvi")
+
+[node name="SpawnEnemigo4" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="3" unique_id=319565765]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.181437, 0, 4.827201)
+script = ExtResource("2_7pfvi")

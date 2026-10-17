@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://c35h4qwg8ngwp"]
+
+[ext_resource type="Script" uid="uid://bxa3vxc03hej3" path="res://entidades/enemigos/EnemigoDummy.gd" id="1_ps2me"]
+[ext_resource type="Script" uid="uid://cqyk40yu5xd3f" path="res://componentes/HealthComponent.gd" id="2_pt2hr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a663t"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_a663t")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_omvyu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yf5fn"]
+
+[node name="EnemigoDummy" type="CharacterBody3D" unique_id=853181832]
+collision_layer = 4
+collision_mask = 11
+platform_floor_layers = 0
+script = ExtResource("1_ps2me")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1194657543]
+mesh = SubResource("BoxMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1085981932]
+shape = SubResource("BoxShape3D_omvyu")
+
+[node name="AreaAtaque" type="Area3D" parent="." unique_id=2137430685]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="AreaAtaque" unique_id=1017952068]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("BoxShape3D_yf5fn")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=1364676181]
+script = ExtResource("2_pt2hr")
+metadata/_custom_type_script = "uid://cqyk40yu5xd3f"

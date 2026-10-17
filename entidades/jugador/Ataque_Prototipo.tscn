@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ci7xwpu74k1sb"]
+
+[ext_resource type="Script" uid="uid://dtj6i0t6onh4j" path="res://entidades/jugador/AtaquePrototipo.gd" id="1_t657l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57qmd"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_g4v7s"]
+material = SubResource("StandardMaterial3D_57qmd")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_pt2hr"]
+
+[node name="AtaquePrototipo" type="Area3D" unique_id=1432130340]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_t657l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=411021529]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("SphereMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=409880513]
+shape = SubResource("SphereShape3D_pt2hr")

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cwgx8cyygqhhy"]
+
+[ext_resource type="Script" uid="uid://c56l04ww2sg6f" path="res://entidades/jugador/jugador.gd" id="1_16k11"]
+[ext_resource type="PackedScene" uid="uid://phumayfws8v7" path="res://ui/hud.tscn" id="2_omvyu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_5auxr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3bvq"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_p62ft"]
+
+[node name="Jugador" type="CharacterBody3D" unique_id=692190244 groups=["Jugador"]]
+collision_layer = 2
+collision_mask = 5
+platform_floor_layers = 4294901760
+script = ExtResource("1_16k11")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=982315943]
+mesh = SubResource("SphereMesh_5auxr")
+surface_material_override/0 = SubResource("StandardMaterial3D_g3bvq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=775038587]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+shape = SubResource("SphereShape3D_p62ft")
+
+[node name="HUD" parent="." unique_id=1259606641 instance=ExtResource("2_omvyu")]

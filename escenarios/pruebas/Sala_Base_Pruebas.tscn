@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cn4pr0imqghfe"]
+
+[ext_resource type="PackedScene" uid="uid://bswnhpgoywbny" path="res://escenarios/base/sala_base.tscn" id="1_kjeyo"]
+
+[node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_kjeyo")]
+
+[node name="SpawnEnemigo1" parent="Spawners" parent_id_path=PackedInt32Array(1064971083) index="0" unique_id=193438712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.362663, 0, 0)
+
+[node name="SpawnEnemigo2" parent="Spawners" parent_id_path=PackedInt32Array(1064971083) index="1" unique_id=1358488844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.091831, 0, 4.323226)

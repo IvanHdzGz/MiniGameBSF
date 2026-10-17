@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bayotik7lfqfr"]
+
+[ext_resource type="Script" uid="uid://c40qpjy8va51o" path="res://dungeonManager/DungeonManager.gd" id="1_m3xc2"]
+[ext_resource type="PackedScene" uid="uid://bswnhpgoywbny" path="res://escenarios/base/sala_base.tscn" id="2_cke7r"]
+[ext_resource type="PackedScene" uid="uid://cwgx8cyygqhhy" path="res://entidades/jugador/jugador.tscn" id="3_a663t"]
+[ext_resource type="PackedScene" uid="uid://cn6biqajiw8ng" path="res://escenarios/salas/combate/sala_combate_01.tscn" id="3_lrv13"]
+[ext_resource type="PackedScene" uid="uid://drx3ilcrfiivl" path="res://escenarios/salas/combate/sala_combate_02.tscn" id="4_it7i3"]
+[ext_resource type="PackedScene" uid="uid://cdj0ad15bt1rh" path="res://escenarios/base/sala_tesoro.tscn" id="5_rnra8"]
+[ext_resource type="PackedScene" uid="uid://blbvdc7b75odn" path="res://escenarios/salas/combate/sala_combate_03.tscn" id="5_woaat"]
+[ext_resource type="PackedScene" uid="uid://de0o1030xpcm2" path="res://escenarios/base/sala_tienda.tscn" id="6_qwlja"]
+[ext_resource type="PackedScene" uid="uid://bq31gjclbx4bs" path="res://escenarios/salas/combate/sala_combate_04.tscn" id="6_uttr8"]
+[ext_resource type="PackedScene" uid="uid://bn3xohrleivg0" path="res://escenarios/base/sala_secreta.tscn" id="7_41fco"]
+[ext_resource type="PackedScene" uid="uid://bhf30xybqxdku" path="res://escenarios/base/sala_sacrificio.tscn" id="8_lrv13"]
+[ext_resource type="PackedScene" uid="uid://0584vou0quwl" path="res://escenarios/base/sala_pacto2.tscn" id="9_it7i3"]
+[ext_resource type="PackedScene" uid="uid://c30fxws3o8bk" path="res://ui/minimapa.tscn" id="13_it7i3"]
+
+[node name="DungeonManager" type="Node3D" unique_id=1885161847 node_paths=PackedStringArray("minimapa_node")]
+script = ExtResource("1_m3xc2")
+sala_inicio_scene = ExtResource("2_cke7r")
+salas_combate_scenes = Array[PackedScene]([ExtResource("3_lrv13"), ExtResource("4_it7i3"), ExtResource("5_woaat"), ExtResource("6_uttr8")])
+jugador_scene = ExtResource("3_a663t")
+min_salas_normales = 9
+max_salas_normales = 20
+sala_tesoro_scene = ExtResource("5_rnra8")
+sala_tienda_scene = ExtResource("6_qwlja")
+sala_secreta_scene = ExtResource("7_41fco")
+sala_sacrificio_scene = ExtResource("8_lrv13")
+sala_pactos_scene = ExtResource("9_it7i3")
+minimapa_node = NodePath("Minimapa")
+
+[node name="Minimapa" parent="." unique_id=174265908 instance=ExtResource("13_it7i3")]
+anchors_preset = -1
+anchor_left = 0.8
+anchor_right = 0.8
+offset_right = 0.79992676
+offset_bottom = -0.20000458
+tamano_celda = Vector2(30, 26)

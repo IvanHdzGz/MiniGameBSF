@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c30fxws3o8bk"]
+
+[ext_resource type="Script" uid="uid://5auxtw3u3251" path="res://ui/Minimapa.gd" id="1_0ckqa"]
+
+[node name="Minimapa" type="Control" unique_id=174265908]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 200.0
+offset_bottom = 200.0
+script = ExtResource("1_0ckqa")

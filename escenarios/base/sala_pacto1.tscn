@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bpnaptlo6pgs8"]
+
+[ext_resource type="PackedScene" uid="uid://bswnhpgoywbny" path="res://escenarios/base/sala_base.tscn" id="1_1t4oh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a663t"]
+
+[node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_1t4oh")]
+
+[node name="Suelo" parent="Geometria" parent_id_path=PackedInt32Array(978086019) index="0" unique_id=232450923]
+surface_material_override/0 = SubResource("StandardMaterial3D_a663t")

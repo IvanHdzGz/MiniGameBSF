@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cn6biqajiw8ng"]
+
+[ext_resource type="PackedScene" uid="uid://c8aoot3egy58g" path="res://escenarios/base/sala_combate.tscn" id="1_m8kto"]
+
+[node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_m8kto")]
