@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://b6lpf646l2vbv"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_u3o4t"]
+
+[resource]
+script = ExtResource("1_u3o4t")
+nombre = "Alabarda"
+dano = 33.0
+consumo_estamina = 27.0
+cooldown_ataque = 1.15
+tiempo_aturdimiento = 0.65
+tamano_hitbox = Vector3(2, 1.8, 2.8)
+alcance_distancia = 2.1
+metadata/_custom_type_script = "uid://q32bota6pn6t"

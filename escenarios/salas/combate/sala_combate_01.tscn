@@ -1,5 +1,32 @@
 [gd_scene format=3 uid="uid://cn6biqajiw8ng"]
 
 [ext_resource type="PackedScene" uid="uid://c8aoot3egy58g" path="res://escenarios/base/sala_combate.tscn" id="1_m8kto"]
+[ext_resource type="PackedScene" uid="uid://c35h4qwg8ngwp" path="res://entidades/enemigos/Enemigo.tscn" id="2_6pnxk"]
+[ext_resource type="Script" uid="uid://26rwutx6sn1d" path="res://entidades/Spawner.gd" id="2_yxnjg"]
 
 [node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_m8kto")]
+max_enemigos = 6
+
+[node name="SpawnEnemigo1" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="0" unique_id=170543978]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])
+
+[node name="SpawnEnemigo2" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="1" unique_id=215079755]
+script = ExtResource("2_yxnjg")
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])
+
+[node name="SpawnEnemigo3" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="2" unique_id=1701009975]
+script = ExtResource("2_yxnjg")
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])
+
+[node name="SpawnEnemigo4" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="3" unique_id=1890990889]
+script = ExtResource("2_yxnjg")
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])
+
+[node name="SpawnEnemigo5" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="4" unique_id=924692592]
+script = ExtResource("2_yxnjg")
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])
+
+[node name="SpawnEnemigo6" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="5" unique_id=1992325737]
+script = ExtResource("2_yxnjg")
+enemigos_normales = Array[PackedScene]([ExtResource("2_6pnxk")])

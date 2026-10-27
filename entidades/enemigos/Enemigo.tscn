@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c35h4qwg8ngwp"]
 
-[ext_resource type="Script" uid="uid://bxa3vxc03hej3" path="res://entidades/enemigos/EnemigoDummy.gd" id="1_ps2me"]
+[ext_resource type="Script" uid="uid://bxa3vxc03hej3" path="res://entidades/enemigos/Enemigo.gd" id="1_ps2me"]
 [ext_resource type="Script" uid="uid://cqyk40yu5xd3f" path="res://componentes/HealthComponent.gd" id="2_pt2hr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a663t"]
@@ -14,7 +14,7 @@ material = SubResource("StandardMaterial3D_a663t")
 
 [node name="EnemigoDummy" type="CharacterBody3D" unique_id=853181832]
 collision_layer = 4
-collision_mask = 11
+collision_mask = 15
 platform_floor_layers = 0
 script = ExtResource("1_ps2me")
 

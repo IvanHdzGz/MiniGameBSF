@@ -4,11 +4,24 @@ extends CharacterBody3D
 @export var salud_maxima: float = 100.0
 var salud_actual: float = 100.0
 
+@export_group("Estamina y Movimiento")
 @export var estamina_maxima: float = 100.0
+@export var consumo_sprint: float = 20.0 # Por segundo
+@export var consumo_dash: float = 30.0
+@export var consumo_ataque: float = 0.0
+@export var regeneracion_estamina: float = 20.0 # Por segundo
+@export var tiempo_espera_regeneracion: float = 1.0 # Retardo tras consumo (1 a 1.5s)
+
+# Variable de control para la velocidad de ataque en el jugador
+var multiplicador_velocidad_ataque: float = 1.0
+
+# En las variables de Jugador.gd:
+@export_group("Equipamiento")
+@export var arma_equipada: ArmaResource # Asigna un recurso .tres en el Inspector
+
 var estamina_actual: float = 100.0
-const REGEN_ESTAMINA: float = 20.0
-const COSTO_DASH: float = 25.0
-const COSTO_SPRINT: float = 15.0
+var agotado: bool = false # Estado de penalización si llega a 0%
+var tiempo_sin_usar_estamina: float = 0.0
 
 # --- MOVIMIENTO ---
 const WALK_SPEED: float = 6.0
@@ -16,8 +29,12 @@ const SPRINT_SPEED: float = 10.0
 const DASH_BASE_SPEED: float = 18.0
 const DASH_SPRINT_SPEED: float = 24.0
 
+# Supongamos que tu capa de enemigos es la 3 (valor binario 4, o usando máscaras directamente)
+const MASCARA_CON_ENEMIGOS: int = 0xFFFFFFFF # O tu máscara habitual que incluye enemigos
+const MASCARA_SIN_ENEMIGOS: int = 0xFFFFFFFD # Ejemplo: desactiva el bit de la capa 3 si usas máscaras personalizadas
+
 const DASH_DURATION: float = 0.22
-const ATAQUE_COOLDOWN: float = 0.25
+const ATAQUE_COOLDOWN: float = 1
 
 var is_dashing: bool = false
 var is_invulnerable: bool = false
@@ -34,32 +51,87 @@ func _ready() -> void:
 	estamina_actual = estamina_maxima
 	actualizar_hud()
 
+func _process(delta: float) -> void:
+	_manejar_regeneracion_estamina(delta)
+
+func _manejar_regeneracion_estamina(delta: float) -> void:
+	# Contabilizar tiempo sin consumir estamina
+	tiempo_sin_usar_estamina += delta
+
+	# Solo regenerar si ya transcurrió el tiempo de espera
+	if tiempo_sin_usar_estamina >= tiempo_espera_regeneracion:
+		if estamina_actual < estamina_maxima:
+			estamina_actual = min(estamina_actual + regeneracion_estamina * delta, estamina_maxima)
+			
+			# Levantar penalización de agotamiento cuando supere el 25%
+			if agotado and estamina_actual >= (estamina_maxima * 0.25):
+				agotado = false
+
+func consumir_estamina(cantidad: float) -> bool:
+	# Si está en estado de agotamiento, bloquea la acción
+	if agotado:
+		return false
+
+	if estamina_actual >= cantidad:
+		estamina_actual -= cantidad
+		tiempo_sin_usar_estamina = 0.0 # Reinicia retardo de regeneración (1.2s)
+		
+		# Si llega exactamente a 0, entra en agotamiento obligatorio
+		if estamina_actual <= 0.0:
+			estamina_actual = 0.0
+			agotado = true
+		return true
+	else:
+		# Si la estamina era insuficiente para la acción completa, entra en agotamiento
+		estamina_actual = 0.0
+		agotado = true
+		tiempo_sin_usar_estamina = 0.0
+		return false
+
+func intentar_sprint(delta: float) -> bool:
+	if agotado or estamina_actual <= 0.0:
+		return false
+	
+	estamina_actual -= consumo_sprint * delta
+	tiempo_sin_usar_estamina = 0.0
+	
+	if estamina_actual <= 0.0:
+		estamina_actual = 0.0
+		agotado = true # Se apaga el sprint automáticamente
+		return false
+		
+	return true
+
+func intentar_dash() -> bool:
+	return consumir_estamina(consumo_dash)
+
+func intentar_ataque() -> bool:
+	return consumir_estamina(consumo_ataque)
+
 func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction := Vector3(input_dir.x, 0, input_dir.y).normalized()
 
 	apuntar_al_raton()
 
-	# Manejo de Estamina y Esprint
+	# --- MANEJO DE SPRINT ---
 	var wants_to_sprint := Input.is_action_pressed("sprint") and direction != Vector3.ZERO
 	var is_sprinting := false
 
-	if wants_to_sprint and estamina_actual > 0:
-		is_sprinting = true
-		estamina_actual = max(0.0, estamina_actual - COSTO_SPRINT * delta)
-	elif not is_dashing and estamina_actual < estamina_maxima:
-		estamina_actual = min(estamina_maxima, estamina_actual + REGEN_ESTAMINA * delta)
+	if wants_to_sprint:
+		is_sprinting = intentar_sprint(delta)
 
-	# Manejo de Dash
+	# --- MANEJO DE DASH ---
 	if Input.is_action_just_pressed("ui_accept") and not is_dashing and direction != Vector3.ZERO:
-		if estamina_actual >= COSTO_DASH:
+		if intentar_dash():
 			ejecutar_dash(is_sprinting)
 
-	# Ataque
+	# --- MANEJO DE ATAQUE ---
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and puede_atacar and not is_dashing:
-		atacar()
+		if intentar_ataque():
+			atacar()
 
-	# Cálculo de velocidad
+	# --- CÁLCULO DE VELOCIDAD DE MOVIMIENTO ---
 	var target_speed: float
 	if is_dashing:
 		target_speed = current_dash_speed
@@ -68,38 +140,88 @@ func _physics_process(delta: float) -> void:
 	else:
 		target_speed = WALK_SPEED
 
-	if direction != Vector3.ZERO:
-		velocity.x = direction.x * target_speed
-		velocity.z = direction.z * target_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, target_speed)
-		velocity.z = move_toward(velocity.z, 0, target_speed)
+	# Aplicamos el multiplicador de ataque aquí para que frene al golpear
+	var velocidad_final = target_speed * multiplicador_velocidad_ataque
 
+	if direction != Vector3.ZERO:
+		velocity.x = direction.x * velocidad_final
+		velocity.z = direction.z * velocidad_final
+	else:
+		velocity.x = move_toward(velocity.x, 0, velocidad_final)
+		velocity.z = move_toward(velocity.z, 0, velocidad_final)
+
+	# Un solo 'move_and_slide' y un solo 'actualizar_hud' al final
 	move_and_slide()
 	actualizar_hud()
 
 func ejecutar_dash(is_sprinting: bool) -> void:
-	estamina_actual -= COSTO_DASH
 	is_dashing = true
-	is_invulnerable = true
+	is_invulnerable = true # Activamos la invulnerabilidad para que el daño de enemigos sea ignorado
+	
+	# Desactivar temporalmente la capa física del jugador para que los enemigos lo atraviesen por completo
+	# (Asumiendo que tu jugador está en la Capa 2, ajusta el número si está en otra)
+	set_collision_layer_value(2, false)
+	set_collision_mask_value(3, false) # Desactiva colisión con capa de enemigos
+	
+	# Determinar velocidad de dash
 	current_dash_speed = DASH_SPRINT_SPEED if is_sprinting else DASH_BASE_SPEED
 	
-	get_tree().create_timer(DASH_DURATION).timeout.connect(func():
+	# Duración del dash (ej. 0.2 segundos)
+	var duracion_dash = 0.2
+	
+	get_tree().create_timer(duracion_dash).timeout.connect(func():
 		is_dashing = false
-		is_invulnerable = false
+		is_invulnerable = false # Desactivamos la invulnerabilidad al terminar
+		
+		# Restaurar capas y máscaras originales del jugador
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(3, true)
 	)
 
 func atacar() -> void:
-	if escena_ataque == null:
+	if arma_equipada == null or not puede_atacar:
 		return
-		
-	puede_atacar = false
-	get_tree().create_timer(ATAQUE_COOLDOWN).timeout.connect(func(): puede_atacar = true)
 
-	var proyectil = escena_ataque.instantiate()
-	proyectil.global_position = global_position + (-transform.basis.z * 1.2)
-	proyectil.direccion = -transform.basis.z
-	get_parent().add_child(proyectil)
+	var costo_estamina: float = arma_equipada.consumo_estamina
+
+	if estamina_actual <= 0.0:
+		return
+
+	estamina_actual = max(0.0, estamina_actual - costo_estamina)
+	puede_atacar = false
+	
+	# Reducir velocidad de movimiento durante el ataque (ej. al 30% de su velocidad normal)
+	multiplicador_velocidad_ataque = .65
+
+	# Cooldown del ataque y restablecer velocidad al terminar
+	get_tree().create_timer(arma_equipada.cooldown_ataque).timeout.connect(func(): 
+		puede_atacar = true
+		multiplicador_velocidad_ataque = 1.0
+	)
+
+	# 1. Crear e instanciar la Hitbox de manera limpia
+	var hitbox := HitboxAtaque.new()
+	var colision := CollisionShape3D.new()
+	var forma := BoxShape3D.new()
+	
+	forma.size = arma_equipada.tamano_hitbox
+	colision.shape = forma
+	hitbox.add_child(colision)
+	
+	hitbox.dano = arma_equipada.dano
+	hitbox.tiempo_aturdimiento = arma_equipada.tiempo_aturdimiento
+	hitbox.emisor = self
+	hitbox.arma_ref = arma_equipada
+	
+	# Copiar exactamente la posición y orientación actual del jugador (que ya sigue el ratón)
+	hitbox.global_transform = global_transform
+	# Desplazarla hacia adelante según el alcance del arma
+	hitbox.global_position = global_position + (-transform.basis.z * arma_equipada.alcance_distancia)
+
+	hitbox.collision_layer = 0
+	hitbox.collision_mask = 0xFFFFFFFF
+
+	get_parent().add_child(hitbox)
 
 func recibir_dano(cantidad: float) -> void:
 	if is_invulnerable:

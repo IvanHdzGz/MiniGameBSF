@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://26rwutx6sn1d" path="res://entidades/Spawner.gd" id="2_7pfvi"]
 
 [node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_wk12a")]
+max_enemigos = 1
 
 [node name="SpawnEnemigo2" type="Marker3D" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="1" unique_id=1149395985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.78594, 0, 6.4400196)

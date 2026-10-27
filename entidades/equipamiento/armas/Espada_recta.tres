@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://b2e8ex0twq130"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_x71x4"]
+
+[resource]
+script = ExtResource("1_x71x4")
+nombre = "Espada_recta"
+cooldown_ataque = 0.6
+tiempo_aturdimiento = 0.2
+tamano_hitbox = Vector3(1.5, 1.5, 1.5)
+metadata/_custom_type_script = "uid://q32bota6pn6t"

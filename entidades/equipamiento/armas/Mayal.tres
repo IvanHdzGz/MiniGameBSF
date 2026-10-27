@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://cc7byog2k215r"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_pm8ov"]
+
+[resource]
+script = ExtResource("1_pm8ov")
+nombre = "Mayal"
+dano = 17.0
+consumo_estamina = 15.0
+cooldown_ataque = 0.75
+tiempo_aturdimiento = 0.4
+tamano_hitbox = Vector3(2.2, 1.8, 2)
+alcance_distancia = 1.5
+metadata/_custom_type_script = "uid://q32bota6pn6t"

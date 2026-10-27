@@ -14,8 +14,8 @@ script = ExtResource("1_37p78")
 [node name="MarginContainer" type="Control" parent="." unique_id=1154257432]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1366.0
+offset_bottom = 768.0
 
 [node name="BarraSalud" type="ProgressBar" parent="MarginContainer" unique_id=1607282155]
 layout_mode = 0

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://1010rf26ql1v"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_1lvdp"]
+
+[resource]
+script = ExtResource("1_1lvdp")
+nombre = "Daga"
+dano = 9.0
+consumo_estamina = 5.0
+cooldown_ataque = 0.4
+tiempo_aturdimiento = 0.1
+tamano_hitbox = Vector3(1.2, 1.2, 1)
+alcance_distancia = 0.9
+metadata/_custom_type_script = "uid://q32bota6pn6t"

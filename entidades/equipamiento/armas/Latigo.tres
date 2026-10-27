@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://i81u38pqul6a"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_alc3l"]
+
+[resource]
+script = ExtResource("1_alc3l")
+nombre = "Latigo"
+dano = 10.0
+consumo_estamina = 9.0
+cooldown_ataque = 0.7
+tiempo_aturdimiento = 0.1
+tamano_hitbox = Vector3(2.5, 1.5, 3)
+alcance_distancia = 2.5
+metadata/_custom_type_script = "uid://q32bota6pn6t"

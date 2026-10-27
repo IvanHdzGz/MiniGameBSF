@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://corneme3r0p5e"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_qnlq2"]
+
+[resource]
+script = ExtResource("1_qnlq2")
+nombre = "Espada_grande"
+dano = 32.0
+consumo_estamina = 25.0
+cooldown_ataque = 1.0
+tiempo_aturdimiento = 0.6
+tamano_hitbox = Vector3(2.2, 1.8, 2)
+alcance_distancia = 1.5
+metadata/_custom_type_script = "uid://q32bota6pn6t"

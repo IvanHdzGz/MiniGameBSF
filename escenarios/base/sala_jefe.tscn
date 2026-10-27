@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://boj3h6p3khba0"]
+
+[ext_resource type="PackedScene" uid="uid://drx3ilcrfiivl" path="res://escenarios/salas/combate/sala_combate_02.tscn" id="1_nesw6"]
+[ext_resource type="PackedScene" uid="uid://c35h4qwg8ngwp" path="res://entidades/enemigos/Enemigo.tscn" id="3_ux8hg"]
+
+[node name="Sala_Base" unique_id=1291500254 instance=ExtResource("1_nesw6")]
+
+[node name="SpawnEnemigo1" parent="Spawners" parent_id_path=PackedInt32Array(415021870) index="0" unique_id=170543978]
+enemigos_jefe = Array[PackedScene]([ExtResource("3_ux8hg")])

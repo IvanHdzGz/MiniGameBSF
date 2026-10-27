@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://cthrig5f544bo"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_hag7u"]
+
+[resource]
+script = ExtResource("1_hag7u")
+nombre = "Arma_colosal"
+dano = 58.0
+consumo_estamina = 48.0
+cooldown_ataque = 1.6
+tiempo_aturdimiento = 1.2
+tamano_hitbox = Vector3(3.2, 2.5, 3)
+alcance_distancia = 2.2
+metadata/_custom_type_script = "uid://q32bota6pn6t"

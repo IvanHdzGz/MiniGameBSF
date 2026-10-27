@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://ci0lst5xgbvac"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_0y5y6"]
+
+[resource]
+script = ExtResource("1_0y5y6")
+nombre = "Guadana"
+dano = 25.0
+consumo_estamina = 20.0
+cooldown_ataque = 1.0
+tamano_hitbox = Vector3(2.5, 1.8, 2.2)
+alcance_distancia = 1.8
+metadata/_custom_type_script = "uid://q32bota6pn6t"

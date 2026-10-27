@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://71orisu0ofxr"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_c8cat"]
+
+[resource]
+script = ExtResource("1_c8cat")
+nombre = "Espada_curva"
+dano = 14.0
+consumo_estamina = 11.0
+cooldown_ataque = 0.55
+tiempo_aturdimiento = 0.2
+tamano_hitbox = Vector3(2, 1.5, 1.5)
+metadata/_custom_type_script = "uid://q32bota6pn6t"

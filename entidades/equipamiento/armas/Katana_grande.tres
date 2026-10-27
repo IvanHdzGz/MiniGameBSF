@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://1u7pf4cgchca"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_yoyc2"]
+
+[resource]
+script = ExtResource("1_yoyc2")
+nombre = "Katana_grande"
+dano = 35.0
+consumo_estamina = 26.0
+cooldown_ataque = 1.05
+tiempo_aturdimiento = 0.1
+tamano_hitbox = Vector3(2.5, 1.8, 2.2)
+alcance_distancia = 1.6
+metadata/_custom_type_script = "uid://q32bota6pn6t"

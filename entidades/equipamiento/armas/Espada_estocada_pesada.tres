@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://dho8pv5gvbcki"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_u1gm5"]
+
+[resource]
+script = ExtResource("1_u1gm5")
+nombre = "Espada_estocada_pesada"
+dano = 28.0
+consumo_estamina = 22.0
+cooldown_ataque = 0.9
+tiempo_aturdimiento = 0.4
+tamano_hitbox = Vector3(1.2, 1.6, 2.2)
+alcance_distancia = 1.8
+metadata/_custom_type_script = "uid://q32bota6pn6t"

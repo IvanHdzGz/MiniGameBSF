@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://i7ms47rx3h2h"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_mdlpf"]
+
+[resource]
+script = ExtResource("1_mdlpf")
+nombre = "Lanza"
+dano = 14.0
+consumo_estamina = 11.0
+cooldown_ataque = 0.6
+tiempo_aturdimiento = 0.2
+tamano_hitbox = Vector3(1, 1.5, 2.5)
+alcance_distancia = 2.0
+metadata/_custom_type_script = "uid://q32bota6pn6t"

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://ceknrjr67emtb"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_5kib1"]
+
+[resource]
+script = ExtResource("1_5kib1")
+nombre = "Martillo"
+dano = 18.0
+consumo_estamina = 16.0
+cooldown_ataque = 0.8
+tiempo_aturdimiento = 0.6
+tamano_hitbox = Vector3(1.8, 1.8, 1.5)
+metadata/_custom_type_script = "uid://q32bota6pn6t"

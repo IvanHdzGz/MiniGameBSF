@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ArmaResource" format=3 uid="uid://bqck6sop56dxx"]
+
+[ext_resource type="Script" uid="uid://q32bota6pn6t" path="res://ArmaResource.gd" id="1_imkfv"]
+
+[resource]
+script = ExtResource("1_imkfv")
+nombre = "Espada_estocada"
+dano = 12.0
+consumo_estamina = 10.0
+tiempo_aturdimiento = 0.15
+tamano_hitbox = Vector3(1, 1.5, 2)
+alcance_distancia = 1.6
+metadata/_custom_type_script = "uid://q32bota6pn6t"

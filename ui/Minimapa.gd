@@ -10,12 +10,13 @@ extends Control
 @export var color_adyacente := Color(0.4, 0.4, 0.4, 0.4)         # Gris tenue/transparente
 @export var color_borde := Color(0.1, 0.1, 0.1, 0.8)            # Borde negro suave
 # --- COLORES DE SALAS ESPECIALES (RGB 0-255) ---
-@export var color_sacrificio := Color8(255, 0, 0)       # Rojo puro
+@export var color_sacrificio := Color8(255, 0, 0)      # Rojo puro
 @export var color_secreta := Color8(80, 0, 120)        # Morado oscuro
 @export var color_tesoro := Color8(255, 255, 0)        # Amarillo
 @export var color_tienda := Color8(255, 150, 0)        # Naranja
 @export var color_pacto1 := Color8(255, 255, 255)      # Blanco
 @export var color_pacto2 := Color8(0, 0, 0)            # Negro
+@export var color_jefe := Color8(180, 0, 0)            # Rojo oscuro
 
 var manager_mazmorra: Node3D = null
 
@@ -75,7 +76,8 @@ func _draw() -> void:
 					3: color_dibujo = color_tienda     # TipoSala.TIENDA
 					4: color_dibujo = color_secreta    # TipoSala.SECRETA
 					5: color_dibujo = color_sacrificio # TipoSala.SACRIFICIO
-					6: color_dibujo = color_pacto1     # TipoSala.PACTOS (Pacto 1)
+					6: color_dibujo = color_pacto1     # TipoSala.PACTOS
+					7: color_dibujo = color_jefe       # TipoSala.JEFE
 					_: 
 						if es_visitada:
 							color_dibujo = color_visitada
